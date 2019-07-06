@@ -1,0 +1,6 @@
+app/files/*
+*.pyc
+nohup.out
+venv
+database.db
+migrations/*

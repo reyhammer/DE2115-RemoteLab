@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ super() }} - Login{% endblock %}
+
+{% block alerts %}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-warning" role="alert">
+      <ul>
+        {% for message in messages %}
+          <li> {{ message }} </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+  <h2>Login</h2>
+  {% if form.errors.username %}
+    <div class="alert alert-warning" role="alert">
+      <ul>
+        <li> Username </li>
+        {% for e in form.errors.username %}
+            <li> {{ e }} </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  {% if form.errors.password %}
+    <div class="alert alert-warning" role="alert">
+      <ul>
+        <li> Password </li>
+        {% for e in form.errors.password %}
+            <li> {{ e }} </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  <form action = "" method="POST">
+    {{ form.csrf_token }}
+    <div class = "form-group">
+      <label>Username</label>
+      {{ form.username(class="form-control", placeholder="Your Username") }}
+    </div>
+
+    <div class = "form-group">
+      <label>Password</label>
+      {{ form.password(class="form-control")}}
+    </div>
+
+    <div class = "checkbox">
+      <label>
+        {{form.save}} Remember me
+      </label>
+    </div>
+
+    <div class = "text-center">
+      <button type="submit" class="btn btn-secondary">Submit</button>
+    </div>
+  </form>
+{% endblock %}

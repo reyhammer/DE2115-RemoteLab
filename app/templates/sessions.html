@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ super() }} - Sessions{% endblock %}
+{% block nav_item_sessions %}active{% endblock %}
+
+{% block content %}
+  <h1>Sessions</h1>
+  <ul>
+    {% for session in sessions %}
+        <li> <a href="{{ url_for('session_cmd', session=session.id) }}">{{ session.id }} - {{ session.Arduino }} </a> </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

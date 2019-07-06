@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ super() }} - Session{% endblock %}
+{% block nav_item_sessions %}active{% endblock %}
+
+{% block content %}
+    <h1>You are in the {{ position }} position of the queue.</h1>
+{% endblock %}
+
+{% block script %}
+  setTimeout(function(){
+    {% if position == 0 %}
+      window.location.replace({{ url_for("available_session") }});
+    {% else %}
+      window.location.reload(1);
+    {% endif %}
+  }, 1000);
+{% endblock %}
